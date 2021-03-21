@@ -1,6 +1,6 @@
-appId: com.example.nextron
-productName: My Nextron App
-copyright: Copyright © 2018 Yoshihide Shiono
+appId: com.example.workspace
+productName: workspace
+copyright: Copyright © 2020 Gifa Eriyanto
 directories:
   output: dist
   buildResources: resources
