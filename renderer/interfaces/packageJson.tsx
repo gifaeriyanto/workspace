@@ -19,4 +19,7 @@ export interface PackageJson {
   devDependencies?: {
     [key: string]: string;
   };
+  peerDependencies?: {
+    [key: string]: string;
+  };
 }
