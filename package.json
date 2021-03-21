@@ -8,6 +8,11 @@
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
+    "build:all": "nextron build --all",
+    "build:win32": "nextron build --win --ia32",
+    "build:win64": "nextron build --win --x64",
+    "build:mac": "nextron build --mac --x64",
+    "build:linux": "nextron build --linux",
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
@@ -15,7 +20,6 @@
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "electron-serve": "^1.1.0",
-    "electron-store": "^7.0.2",
     "framer-motion": "3",
     "react-icons": "^4.2.0"
   },
