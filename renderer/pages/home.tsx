@@ -1,12 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Flex, Grid, Text } from '@chakra-ui/layout';
-import Folder from 'components/folder/folder';
-import FolderAddIcon from 'components/icons/folderAddIcon';
-import MainLayout from 'layouts/main';
-import { readJSONFile } from 'utils/fs';
+import { Button } from '@chakra-ui/button';
+import { Checkbox } from '@chakra-ui/checkbox';
+import { useDisclosure } from '@chakra-ui/hooks';
 import { Input } from '@chakra-ui/input';
-import { PackageJson } from 'interfaces/packageJson';
-import ElectronStore from 'electron-store';
+import { Flex, Grid, Text } from '@chakra-ui/layout';
 import {
   Modal,
   ModalBody,
@@ -16,9 +12,15 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/modal';
-import { useDisclosure } from '@chakra-ui/hooks';
-import { Button } from '@chakra-ui/button';
-import { Checkbox } from '@chakra-ui/checkbox';
+import { useToast } from '@chakra-ui/toast';
+import Folder from 'components/folder/folder';
+import FolderAddIcon from 'components/icons/folderAddIcon';
+import ElectronStore from 'electron-store';
+import { PackageJson } from 'interfaces/packageJson';
+import MainLayout from 'layouts/main';
+import Link from 'next/link';
+import React, { useEffect, useRef, useState } from 'react';
+import { readJSONFile } from 'utils/fs';
 
 interface FilePath extends File {
   path: string;
@@ -26,6 +28,7 @@ interface FilePath extends File {
 
 const Home = () => {
   const store = new ElectronStore();
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [hint, setHint] = useState(true);
   const [projects, setProjects] = useState<PackageJson[]>([]);
@@ -124,8 +127,12 @@ const Home = () => {
             <FolderAddIcon w="46px" h="35px" />
             <Text mt={6}>Add project</Text>
           </Flex>
-          {projects.map((project) => (
-            <Folder key={project.name} name={project.name} />
+          {projects.map((project, id) => (
+            <Link href={`/project/${id}`} key={project.name}>
+              <a>
+                <Folder name={project.name} />
+              </a>
+            </Link>
           ))}
         </Grid>
       </MainLayout>

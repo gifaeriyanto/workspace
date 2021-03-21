@@ -1,4 +1,5 @@
 import { extendTheme, ThemeOverride } from '@chakra-ui/react';
+import LinkTheme from 'theme/link';
 
 const theme = extendTheme({
   config: {
@@ -26,7 +27,9 @@ const theme = extendTheme({
       },
     },
   },
-  components: {},
+  components: {
+    Link: LinkTheme,
+  },
 } as ThemeOverride);
 
 export default theme;

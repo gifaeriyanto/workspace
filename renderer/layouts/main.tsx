@@ -1,6 +1,6 @@
-import React from 'react';
-import Head from 'next/head';
 import { Box, Heading } from '@chakra-ui/layout';
+import Head from 'next/head';
+import React from 'react';
 
 export interface MainLayoutProps {
   title: string;
@@ -13,7 +13,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ title, children }) => {
         <title>Workspace</title>
       </Head>
 
-      <Box p="50px">
+      <Box m="50px">
         <Heading fontWeight="normal" mb={10}>
           {title}
         </Heading>
