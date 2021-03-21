@@ -1,6 +1,5 @@
 import React from 'react';
-import Head from 'next/head';
-import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/layout';
+import { Flex, Grid, Text } from '@chakra-ui/layout';
 import Folder from 'components/folder/folder';
 import FolderAddIcon from 'components/icons/folderAddIcon';
 import MainLayout from 'layouts/main';
