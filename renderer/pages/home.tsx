@@ -141,13 +141,15 @@ const Home = () => {
             <FolderAddIcon w="46px" h="35px" />
             <Text mt={6}>Add project</Text>
           </Flex>
-          {projects.map((project, id) => (
-            <Link href={`/project/${id}`} key={project.name}>
-              <a>
-                <Folder name={project.name} />
-              </a>
-            </Link>
-          ))}
+          {projects
+            .sort((a, b) => (a.name > b.name ? 1 : -1)) // sort by alphabet ASC
+            .map((project, id) => (
+              <Link href={`/project/${id}`} key={project.name}>
+                <a>
+                  <Folder name={project.name} />
+                </a>
+              </Link>
+            ))}
         </Grid>
       </MainLayout>
 
