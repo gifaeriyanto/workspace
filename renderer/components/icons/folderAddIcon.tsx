@@ -18,9 +18,9 @@ const FolderAddIcon: ComponentWithAs<'svg', IconProps> = ({ ...props }) => {
           d="M8,14.7H19.4M13.7,9V20.4"
           transform="translate(11.102 9.251)"
           stroke="#242424"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
         />
       </g>
     </Icon>
