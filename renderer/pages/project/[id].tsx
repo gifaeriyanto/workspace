@@ -1,12 +1,13 @@
-import { Box, Flex, Grid, HStack, Text } from '@chakra-ui/layout';
 import {
   useToast,
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
+  Box,
   Button,
+  Flex,
+  Grid,
+  HStack,
   Icon,
   Link as CLink,
+  Text,
 } from '@chakra-ui/react';
 import { exec } from 'child_process';
 import { shell } from 'electron';
@@ -93,20 +94,6 @@ const Home = () => {
                 </Button>
               </HStack>
             </Box>
-
-            <Breadcrumb mb={8}>
-              <BreadcrumbItem opacity="0.5">
-                <BreadcrumbLink href="#">
-                  <Link href="/home">
-                    <a>Home</a>
-                  </Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-
-              <BreadcrumbItem isCurrentPage>
-                <BreadcrumbLink>{projectDetail?.name}</BreadcrumbLink>
-              </BreadcrumbItem>
-            </Breadcrumb>
 
             <Grid templateColumns="200px auto">
               {projectDetail.version && item('Version', projectDetail.version)}

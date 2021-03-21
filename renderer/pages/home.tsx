@@ -1,9 +1,11 @@
-import { Button } from '@chakra-ui/button';
-import { Checkbox } from '@chakra-ui/checkbox';
-import { useDisclosure } from '@chakra-ui/hooks';
-import { Input } from '@chakra-ui/input';
-import { Flex, Grid, Text } from '@chakra-ui/layout';
 import {
+  useDisclosure,
+  useToast,
+  Button,
+  Checkbox,
+  Flex,
+  Grid,
+  Input,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -11,8 +13,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-} from '@chakra-ui/modal';
-import { useToast } from '@chakra-ui/toast';
+  Text,
+} from '@chakra-ui/react';
 import Folder from 'components/folder/folder';
 import FolderAddIcon from 'components/icons/folderAddIcon';
 import ElectronStore from 'electron-store';
