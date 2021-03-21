@@ -103,6 +103,7 @@ const Home = () => {
         status: 'success',
         duration: 5000,
         isClosable: true,
+        position: 'top',
       });
     } catch (error) {
       toast({
@@ -110,6 +111,7 @@ const Home = () => {
         status: 'error',
         duration: 5000,
         isClosable: true,
+        position: 'top',
       });
     }
     router.push('/home');

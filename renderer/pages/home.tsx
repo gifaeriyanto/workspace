@@ -54,7 +54,13 @@ const Home = () => {
   const onAddProject = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.currentTarget.files[0] as FilePath;
     if (file?.name !== 'package.json') {
-      alert('Please select package.json');
+      toast({
+        description: 'Please select package.json in your project',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'top',
+      });
       resetInputValue();
       return;
     }
@@ -63,7 +69,13 @@ const Home = () => {
     const projectName = splitted[splitted.lastIndexOf('package.json') - 1];
 
     if (projects.findIndex((project) => project.name === projectName) !== -1) {
-      alert('The project was added');
+      toast({
+        description: 'This project already exists',
+        status: 'warning',
+        duration: 5000,
+        isClosable: true,
+        position: 'top',
+      });
       resetInputValue();
       return;
     }
