@@ -8,7 +8,12 @@ import {
   Heading,
   HStack,
   Icon,
+  IconButton,
   Link as CLink,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -25,7 +30,7 @@ import MainLayout from 'layouts/main';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { HiPlay } from 'react-icons/hi';
+import { HiDotsVertical, HiOutlineArrowLeft, HiPlay } from 'react-icons/hi';
 
 const Home = () => {
   const router = useRouter();
@@ -77,11 +82,37 @@ const Home = () => {
             </CLink>
           )}`,
           status: 'error',
-          duration: 9000,
+          duration: 5000,
           isClosable: true,
         });
       }
     });
+  };
+
+  const handleOpenFinder = () => {
+    exec(`open ${projectDetail.dir}`);
+  };
+
+  const handleDeleteProject = () => {
+    try {
+      const projects = store.get('projects') as PackageJson[];
+      projects.splice(Number(projectId), 1);
+      store.set('projects', projects);
+      toast({
+        description: 'Project deleted',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+      });
+    } catch (error) {
+      toast({
+        description: 'Delete project failed',
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+    router.push('/home');
   };
 
   if (!Object.keys(projectDetail).length) {
@@ -96,12 +127,25 @@ const Home = () => {
             <HStack>
               <Link href="/home">
                 <a>
-                  <Button>Back to home</Button>
+                  <Button leftIcon={<HiOutlineArrowLeft />}>
+                    Back to home
+                  </Button>
                 </a>
               </Link>
               <Button colorScheme="yellow" onClick={handleOpenVSCode}>
                 Open with VSCode
               </Button>
+              <Menu>
+                <MenuButton as={IconButton} icon={<HiDotsVertical />} />
+                <MenuList>
+                  <MenuItem onClick={handleOpenFinder}>
+                    Reveal in Finder
+                  </MenuItem>
+                  <MenuItem color="orange" onClick={handleDeleteProject}>
+                    Delete {projectDetail.name}
+                  </MenuItem>
+                </MenuList>
+              </Menu>
             </HStack>
           </Box>
 
