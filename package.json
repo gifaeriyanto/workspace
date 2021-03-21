@@ -1,9 +1,9 @@
 {
   "private": true,
-  "name": "my-nextron-app",
-  "description": "My application description",
+  "name": "workspace",
+  "description": "Manage and maintain your local projects",
   "version": "1.0.0",
-  "author": "Yoshihide Shiono <shiono.yoshihide@gmail.com>",
+  "author": "Gifa Eriyanto",
   "main": "app/background.js",
   "scripts": {
     "dev": "nextron",
