@@ -5,14 +5,18 @@ export interface PackageJson {
   description?: string;
   author?: string;
   license?: string;
-  repository?: string;
-  scripts: {
+  repository?: {
+    type?: string;
+    url?: string;
+  };
+  homepage?: string;
+  scripts?: {
     [key: string]: string;
   };
-  dependencies: {
+  dependencies?: {
     [key: string]: string;
   };
-  devDependencies: {
+  devDependencies?: {
     [key: string]: string;
   };
 }
