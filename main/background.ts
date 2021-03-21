@@ -14,8 +14,11 @@ if (isProd) {
   await app.whenReady();
 
   const mainWindow = createWindow('main', {
-    width: 1000,
-    height: 600,
+    width: 760,
+    height: 700,
+    minWidth: 760,
+    title: 'Workspace',
+    backgroundColor: '#242424',
   });
 
   if (isProd) {
@@ -23,7 +26,7 @@ if (isProd) {
   } else {
     const port = process.argv[2];
     await mainWindow.loadURL(`http://localhost:${port}/home`);
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
   }
 })();
 
