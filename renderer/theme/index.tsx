@@ -3,6 +3,7 @@ import { extendTheme, ThemeOverride } from '@chakra-ui/react';
 const theme = extendTheme({
   config: {
     useSystemColorMode: false,
+    initialColorMode: 'dark',
   },
   radii: {
     md: '4px',
@@ -12,12 +13,16 @@ const theme = extendTheme({
     heading: 'Fira Code',
     mono: 'Fira Code',
   },
+  fontSizes: {
+    sm: '12px',
+    md: '14px',
+  },
   styles: {
     global: {
       body: {
         color: '#fff',
         bgColor: '#242424',
-        p: '50px',
+        fontSize: '14px',
       },
     },
   },

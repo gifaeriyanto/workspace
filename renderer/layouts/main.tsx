@@ -13,7 +13,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ title, children }) => {
         <title>Workspace</title>
       </Head>
 
-      <Box>
+      <Box p="50px">
         <Heading fontWeight="normal" mb={10}>
           {title}
         </Heading>

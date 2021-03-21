@@ -22,7 +22,7 @@ const Folder: ComponentWithAs<'svg', FolderProps> = ({ name, ...props }) => {
       _hover={{ bgColor: 'rgba(0, 0, 0, 0.5)' }}
     >
       <FolderIcon w="80px" h="60px" mb={3} mt={1} />
-      <Text fontSize="sm">{name}</Text>
+      <Text>{name}</Text>
     </Box>
   );
 };
