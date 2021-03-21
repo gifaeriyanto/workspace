@@ -65,32 +65,24 @@ const Home = () => {
   );
 
   const handleOpenVSCode = () => {
-    exec(`code ${projectDetail.dir}`, (err) => {
-      if (err) {
-        toast({
-          title: 'Cannot open VSCode',
-          description: `Please integrate the vscode-cli to your terminal. ${(
-            <CLink
-              href="#"
-              onClick={() =>
-                shell.openExternal(
-                  'https://code.visualstudio.com/docs/editor/command-line',
-                )
-              }
-            >
-              Learn more
-            </CLink>
-          )}`,
-          status: 'error',
-          duration: 5000,
-          isClosable: true,
-        });
-      }
-    });
+    exec(
+      `"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" ${projectDetail.dir}`,
+      (err) => {
+        if (err) {
+          toast({
+            title: 'Cannot open VSCode',
+            description: 'Error: ' + JSON.stringify(err),
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          });
+        }
+      },
+    );
   };
 
   const handleOpenFinder = () => {
-    exec(`open ${projectDetail.dir}`);
+    shell.openPath(projectDetail.dir);
   };
 
   const handleDeleteProject = () => {
@@ -209,9 +201,11 @@ const Home = () => {
           <ModalCloseButton />
           <ModalBody>
             <Grid templateColumns="auto 150px">
-              {Object.keys(projectDetail.dependencies).map((key) =>
-                item(key, projectDetail.dependencies[key]),
-              )}
+              {Object.keys(projectDetail.dependencies).map((key) => (
+                <React.Fragment key={key}>
+                  {item(key, projectDetail.dependencies[key])}
+                </React.Fragment>
+              ))}
             </Grid>
 
             {projectDetail.devDependencies &&
@@ -221,9 +215,11 @@ const Home = () => {
                     Dev Dependencies
                   </Heading>
                   <Grid templateColumns="auto 150px">
-                    {Object.keys(projectDetail.devDependencies).map((key) =>
-                      item(key, projectDetail.devDependencies[key]),
-                    )}
+                    {Object.keys(projectDetail.devDependencies).map((key) => (
+                      <React.Fragment key={key}>
+                        {item(key, projectDetail.devDependencies[key])}
+                      </React.Fragment>
+                    ))}
                   </Grid>
                 </>
               )}
@@ -235,9 +231,11 @@ const Home = () => {
                     Peer Dependencies
                   </Heading>
                   <Grid templateColumns="auto 150px">
-                    {Object.keys(projectDetail.peerDependencies).map((key) =>
-                      item(key, projectDetail.peerDependencies[key]),
-                    )}
+                    {Object.keys(projectDetail.peerDependencies).map((key) => (
+                      <React.Fragment key={key}>
+                        {item(key, projectDetail.peerDependencies[key])}
+                      </React.Fragment>
+                    ))}
                   </Grid>
                 </>
               )}
