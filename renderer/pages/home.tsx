@@ -138,7 +138,7 @@ const Home = () => {
             cursor="pointer"
             onClick={handleAddProject}
           >
-            <FolderAddIcon w="46px" h="35px" />
+            <FolderAddIcon w="46px" h="35px" mt={2} />
             <Text mt={6}>Add project</Text>
           </Flex>
           {projects
