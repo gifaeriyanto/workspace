@@ -15,7 +15,7 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
-import Folder from 'components/folder/folder';
+import Folder from 'components/folder';
 import FolderAddIcon from 'components/icons/folderAddIcon';
 import ElectronStore from 'electron-store';
 import { PackageJson } from 'interfaces/packageJson';
