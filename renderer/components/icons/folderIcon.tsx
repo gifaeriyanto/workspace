@@ -1,4 +1,4 @@
-import { Icon, IconProps, ComponentWithAs } from '@chakra-ui/react';
+import { ComponentWithAs, Icon, IconProps } from '@chakra-ui/react';
 import React from 'react';
 
 const FolderIcon: ComponentWithAs<'svg', IconProps> = ({ ...props }) => {

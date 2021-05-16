@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 export const getDirectories = (dir: string) => {
-  return fs.readdirSync(dir).filter(function (file) {
+  return fs.readdirSync(dir).filter((file) => {
     return fs.statSync(dir + '/' + file).isDirectory();
   });
 };
@@ -20,7 +20,6 @@ export const findFilesFromDir = (
   callback?: (value: string[]) => void,
 ) => {
   if (!fs.existsSync(dir)) {
-    console.log('no dir ', dir);
     return;
   }
 

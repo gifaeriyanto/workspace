@@ -1,4 +1,4 @@
-import { Box, Flex, Text, ComponentWithAs } from '@chakra-ui/react';
+import { Box, ComponentWithAs, Flex, Text } from '@chakra-ui/react';
 import FolderIcon from 'components/icons/folderIcon';
 import React from 'react';
 

@@ -1,7 +1,3 @@
-import MainLayout from 'layouts/main';
-import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import {
   Box,
   Button,
@@ -14,12 +10,16 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react';
-import { HiOutlineArrowLeft } from 'react-icons/hi';
-import { PackageJson } from 'interfaces/packageJson';
 import ElectronStore from 'electron-store';
-import { findFilesFromDir } from 'utils/fs';
-import { convertToAst } from 'utils/analyst';
+import { PackageJson } from 'interfaces/packageJson';
+import MainLayout from 'layouts/main';
 import lodash, { uniqBy } from 'lodash';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
+import { HiOutlineArrowLeft } from 'react-icons/hi';
+import { convertToAst } from 'utils/analyst';
+import { findFilesFromDir } from 'utils/fs';
 
 const Analytics: React.FC = () => {
   const router = useRouter();
@@ -70,8 +70,7 @@ const Analytics: React.FC = () => {
             Object.keys({
               ...projectDetail.dependencies,
               ...projectDetail.devDependencies,
-            }).findIndex((item) => key.split('/')[0] === item.split('/')[0]) >=
-            0
+            }).findIndex((cur) => cur.split('/')[0] === key.split('/')[0]) >= 0
           ) {
             analysed[key] = analysed[key] + 1 || 1;
           }
