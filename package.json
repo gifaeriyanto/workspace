@@ -5,6 +5,7 @@
   "version": "1.0.0",
   "author": "Gifa Eriyanto",
   "main": "app/background.js",
+  "license": "MIT",
   "scripts": {
     "dev": "nextron",
     "build": "nextron build",
@@ -13,7 +14,9 @@
     "build:win64": "nextron build --win --x64",
     "build:mac": "nextron build --mac --x64",
     "build:linux": "nextron build --linux",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "tslint": "tslint --project tsconfig.json",
+    "tslint:fix": "tslint --fix --project tsconfig.json"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.3.4",
@@ -24,6 +27,7 @@
     "electron-store": "^7.0.2",
     "framer-motion": "3",
     "fs": "^0.0.1-security",
+    "lodash": "^4.17.21",
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
