@@ -109,7 +109,7 @@ const Project = () => {
     router.push('/home');
   };
 
-  const handleAnalysis = () => {
+  const handleAnalyze = () => {
     router.push(`/analytics/${projectId}`);
   };
 
@@ -133,7 +133,7 @@ const Project = () => {
               <MenuList>
                 <MenuItem onClick={handleOpenFinder}>Reveal in Finder</MenuItem>
                 <MenuItem onClick={handleOpenVSCode}>Open with VSCode</MenuItem>
-                <MenuItem onClick={handleAnalysis}>Analyst</MenuItem>
+                <MenuItem onClick={handleAnalyze}>Analyzt</MenuItem>
                 <MenuItem color="orange" onClick={handleDeleteProject}>
                   Delete {projectDetail.name}
                 </MenuItem>

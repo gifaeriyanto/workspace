@@ -18,7 +18,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
-import { convertToAst } from 'utils/analyst';
+import { convertToAst } from 'utils/analyze';
 import { findFilesFromDir } from 'utils/fs';
 
 const Analytics: React.FC = () => {
@@ -28,8 +28,8 @@ const Analytics: React.FC = () => {
   const [projectDetail, setProjectDetail] = useState<PackageJson>(
     {} as PackageJson,
   );
-  const [filesToBeAnalysed, setFilesToBeAnalysed] = useState([]);
-  const [importsAnalysed, setImportsAnalysed] = useState([]);
+  const [filesToBeAnalyzed, setFilesToBeAnalyzed] = useState([]);
+  const [importsAnalyzed, setImportsAnalyzed] = useState([]);
 
   useEffect(() => {
     if (router.query?.id) {
@@ -54,16 +54,16 @@ const Analytics: React.FC = () => {
           result = [...result, ...value];
         },
       );
-      setFilesToBeAnalysed(uniqBy(result, (item) => item));
+      setFilesToBeAnalyzed(uniqBy(result, (item) => item));
     }
   }, [projectDetail]);
 
   useEffect(() => {
-    if (filesToBeAnalysed.length) {
-      const analysed: {
+    if (filesToBeAnalyzed.length) {
+      const analyzed: {
         [key: string]: number;
       } = {};
-      filesToBeAnalysed.forEach((item) => {
+      filesToBeAnalyzed.forEach((item) => {
         const importsStat = convertToAst(item);
         Object.keys(importsStat).forEach((key) => {
           if (
@@ -72,18 +72,18 @@ const Analytics: React.FC = () => {
               ...projectDetail.devDependencies,
             }).findIndex((cur) => cur.split('/')[0] === key.split('/')[0]) >= 0
           ) {
-            analysed[key] = analysed[key] + 1 || 1;
+            analyzed[key] = analyzed[key] + 1 || 1;
           }
         });
       });
-      const sorted = lodash(analysed)
+      const sorted = lodash(analyzed)
         .toPairs()
         .orderBy([1], ['desc'])
         .fromPairs()
         .value();
-      setImportsAnalysed(Object.entries(sorted));
+      setImportsAnalyzed(Object.entries(sorted));
     }
-  }, [filesToBeAnalysed]);
+  }, [filesToBeAnalyzed]);
 
   return (
     <MainLayout
@@ -116,7 +116,14 @@ const Analytics: React.FC = () => {
             </Tr>
           </Thead>
           <Tbody>
-            {importsAnalysed.map((item) => (
+            {importsAnalyzed.length === 0 && (
+              <Tr>
+                <Td colSpan={2} textAlign="center">
+                  Analyzing...
+                </Td>
+              </Tr>
+            )}
+            {importsAnalyzed.map((item) => (
               <Tr>
                 <Td w="80%">{item[0]}</Td>
                 <Td isNumeric>{item[1]}</Td>
