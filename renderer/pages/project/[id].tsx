@@ -133,7 +133,7 @@ const Project = () => {
               <MenuList>
                 <MenuItem onClick={handleOpenFinder}>Reveal in Finder</MenuItem>
                 <MenuItem onClick={handleOpenVSCode}>Open with VSCode</MenuItem>
-                <MenuItem onClick={handleAnalyze}>Analyzt</MenuItem>
+                <MenuItem onClick={handleAnalyze}>Analyze</MenuItem>
                 <MenuItem color="orange" onClick={handleDeleteProject}>
                   Delete {projectDetail.name}
                 </MenuItem>

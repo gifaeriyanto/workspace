@@ -19,6 +19,9 @@ if (isProd) {
     minWidth: 760,
     title: 'Workspace',
     backgroundColor: '#242424',
+    webPreferences: {
+      devTools: !isProd,
+    },
   });
 
   if (isProd) {

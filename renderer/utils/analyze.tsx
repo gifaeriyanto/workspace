@@ -4,7 +4,7 @@ import ts from 'typescript';
 
 export const convertToAst = (dir: string) => {
   const node = ts.createSourceFile(
-    'analyzt.ts',
+    'analyze.ts',
     readFileSync(dir, 'utf8'),
     ts.ScriptTarget.Latest,
   );
