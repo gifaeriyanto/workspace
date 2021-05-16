@@ -32,7 +32,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { HiDotsVertical, HiOutlineArrowLeft, HiPlay } from 'react-icons/hi';
 
-const Home = () => {
+const Project = () => {
   const router = useRouter();
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -109,40 +109,40 @@ const Home = () => {
     router.push('/home');
   };
 
+  const handleAnalysis = () => {
+    router.push(`/analytics/${projectId}`);
+  };
+
   if (!Object.keys(projectDetail).length) {
     return <>Loading...</>;
   }
 
   return (
     <>
-      <MainLayout title={projectDetail.name}>
+      <MainLayout
+        title={projectDetail.name}
+        rightAddon={
+          <HStack>
+            <Link href="/home">
+              <a>
+                <Button leftIcon={<HiOutlineArrowLeft />}>Back</Button>
+              </a>
+            </Link>
+            <Menu>
+              <MenuButton as={IconButton} icon={<HiDotsVertical />} />
+              <MenuList>
+                <MenuItem onClick={handleOpenFinder}>Reveal in Finder</MenuItem>
+                <MenuItem onClick={handleOpenVSCode}>Open with VSCode</MenuItem>
+                <MenuItem onClick={handleAnalysis}>Analyst</MenuItem>
+                <MenuItem color="orange" onClick={handleDeleteProject}>
+                  Delete {projectDetail.name}
+                </MenuItem>
+              </MenuList>
+            </Menu>
+          </HStack>
+        }
+      >
         <>
-          <Box position="absolute" top="0" right="50px" zIndex="docked">
-            <HStack>
-              <Link href="/home">
-                <a>
-                  <Button leftIcon={<HiOutlineArrowLeft />}>
-                    Back to home
-                  </Button>
-                </a>
-              </Link>
-              <Button colorScheme="yellow" onClick={handleOpenVSCode}>
-                Open with VSCode
-              </Button>
-              <Menu>
-                <MenuButton as={IconButton} icon={<HiDotsVertical />} />
-                <MenuList>
-                  <MenuItem onClick={handleOpenFinder}>
-                    Reveal in Finder
-                  </MenuItem>
-                  <MenuItem color="orange" onClick={handleDeleteProject}>
-                    Delete {projectDetail.name}
-                  </MenuItem>
-                </MenuList>
-              </Menu>
-            </HStack>
-          </Box>
-
           <Grid templateColumns="200px auto">
             {projectDetail.version && item('Version', projectDetail.version)}
             {projectDetail.description &&
@@ -164,7 +164,7 @@ const Home = () => {
                 'Scripts',
                 Object.keys(projectDetail.scripts).map((key) => (
                   <Flex key={key} mb={4} align="center">
-                    <Icon as={HiPlay} color="yellow" mr={2} fontSize="lg" />
+                    <Icon as={HiPlay} color="yellow.500" mr={2} fontSize="lg" />
                     <Box w="100%">
                       <Text as="span" mr={2}>
                         {key}
@@ -186,7 +186,7 @@ const Home = () => {
             {projectDetail.dependencies &&
               item(
                 'Dependencies',
-                <CLink href="#" color="yellow" onClick={onOpen}>
+                <CLink href="#" color="yellow.500" onClick={onOpen}>
                   Show all dependencies
                 </CLink>,
               )}
@@ -246,4 +246,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Project;
