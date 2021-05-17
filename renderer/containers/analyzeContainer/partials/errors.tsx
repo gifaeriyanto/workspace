@@ -1,11 +1,11 @@
 import { Alert, AlertDescription } from '@chakra-ui/alert';
 import { Box, Text, VStack } from '@chakra-ui/layout';
 import Section from 'components/section';
+import { ErrorData } from 'interfaces/analyze';
 import React from 'react';
-import { ErrorsData } from '../analyzeContainer';
 
 interface Errors {
-  errors: ErrorsData[];
+  errors: ErrorData[];
 }
 
 const Errors: React.FC<Errors> = ({ errors }) => {
@@ -19,7 +19,7 @@ const Errors: React.FC<Errors> = ({ errors }) => {
                 <Text>
                   <b>Directory:</b> <u>{item.dir}</u>
                 </Text>
-                <Text>{item.errorMessage}</Text>
+                <Text>{item.message}</Text>
               </AlertDescription>
             </Alert>
           ))}

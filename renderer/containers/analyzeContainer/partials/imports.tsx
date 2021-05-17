@@ -1,6 +1,6 @@
 import { Box, Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 import Section from 'components/section';
-import { ImportsData } from 'containers/analyzeContainer/analyzeContainer';
+import { ImportsData } from 'interfaces/analyze';
 import React from 'react';
 
 interface Imports {
