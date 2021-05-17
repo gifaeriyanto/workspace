@@ -1,9 +1,10 @@
 import { readFileSync } from 'fs';
 import ts from 'typescript';
 import j from 'jscodeshift';
+import { ErrorData } from 'interfaces/analyze';
 
 interface ConvertToAstResult {
-  [key: string]: number | string;
+  [key: string]: number | ErrorData;
 }
 
 export const convertToAst = (dir: string): ConvertToAstResult => {
@@ -21,7 +22,10 @@ export const convertToAst = (dir: string): ConvertToAstResult => {
   try {
     root = j.withParser('tsx')(node.getText());
   } catch (error) {
-    imports['error'] = error.message as string;
+    imports['error'] = {
+      dir,
+      message: error.message,
+    };
   }
 
   const importSelector = root.find(j.ImportDeclaration);

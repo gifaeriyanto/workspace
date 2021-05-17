@@ -2,6 +2,7 @@ import { Box, Button, Flex, Spinner, Text } from '@chakra-ui/react';
 import Errors from 'containers/analyzeContainer/partials/errors';
 import Imports from 'containers/analyzeContainer/partials/imports';
 import ElectronStore from 'electron-store';
+import { ErrorData, ImportsData } from 'interfaces/analyze';
 import { PackageJson } from 'interfaces/packageJson';
 import MainLayout from 'layouts/main';
 import lodash, { uniqBy } from 'lodash';
@@ -11,13 +12,6 @@ import React, { useEffect, useState } from 'react';
 import { HiOutlineArrowLeft } from 'react-icons/hi';
 import { convertToAst } from 'utils/analyze';
 import { findFilesFromDir } from 'utils/fs';
-
-export interface ErrorsData {
-  dir: string;
-  errorMessage: string;
-}
-
-export type ImportsData = [string, number];
 
 const AnalyzeContainer: React.FC = () => {
   const router = useRouter();
@@ -29,7 +23,7 @@ const AnalyzeContainer: React.FC = () => {
   const [filesToBeAnalyzed, setFilesToBeAnalyzed] = useState([]);
   const [importsAnalyzed, setImportsAnalyzed] = useState<ImportsData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [errors, setErrors] = useState<ErrorsData[]>([]);
+  const [errors, setErrors] = useState<ErrorData[]>([]);
 
   useEffect(() => {
     if (router.query?.id) {
@@ -67,16 +61,9 @@ const AnalyzeContainer: React.FC = () => {
         const importsStat = convertToAst(item);
         Object.keys(importsStat).forEach((key) => {
           if (key === 'error') {
-            setErrors([
-              ...errors,
-              {
-                dir: item,
-                errorMessage: importsStat[key] as string,
-              },
-            ]);
-          }
-
-          if (
+            errors.push(importsStat[key] as ErrorData);
+            setErrors([...errors]);
+          } else if (
             Object.keys({
               ...projectDetail.dependencies,
               ...projectDetail.devDependencies,
