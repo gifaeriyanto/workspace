@@ -22,7 +22,6 @@ import {
   ModalOverlay,
   Text,
 } from '@chakra-ui/react';
-import { exec } from 'child_process';
 import { shell } from 'electron';
 import ElectronStore from 'electron-store';
 import { PackageJson } from 'interfaces/packageJson';
@@ -31,6 +30,7 @@ import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { HiDotsVertical, HiOutlineArrowLeft, HiPlay } from 'react-icons/hi';
+import { openVSCode } from 'utils/cli';
 
 const Project = () => {
   const router = useRouter();
@@ -65,20 +65,15 @@ const Project = () => {
   );
 
   const handleOpenVSCode = () => {
-    exec(
-      `"/Applications/Visual Studio Code.app/Contents/Resources/app/bin/code" ${projectDetail.dir}`,
-      (err) => {
-        if (err) {
-          toast({
-            title: 'Cannot open VSCode',
-            description: 'Error: ' + JSON.stringify(err),
-            status: 'error',
-            duration: 5000,
-            isClosable: true,
-          });
-        }
-      },
-    );
+    openVSCode(projectDetail.dir, (err) => {
+      toast({
+        title: 'Cannot open VSCode',
+        description: 'Error: ' + JSON.stringify(err),
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    });
   };
 
   const handleOpenFinder = () => {
